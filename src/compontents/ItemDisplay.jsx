@@ -1,11 +1,21 @@
-import { Button, Input, Image, Link, Flex, Box } from "@chakra-ui/react";
+import {
+  Button,
+  Input,
+  Image,
+  Link,
+  Flex,
+  Box,
+  Heading,
+  Center,
+} from "@chakra-ui/react";
 
 function ItemDisplay({
   animeResults,
   searchTime,
   setSearchString,
   addToCompare,
-  setCompareModal
+  setCompareModal,
+  quote,
 }) {
   return (
     <div>
@@ -14,40 +24,53 @@ function ItemDisplay({
         placeholder="Search"
         onChange={(e) => setSearchString(e.target.value)}
       ></Input>
-      <Button colorScheme="blue" onClick={searchTime}>
-        Search
-      </Button>
+      <Center>
+        <Button colorScheme="blue" onClick={searchTime}>
+          Search
+        </Button>
+      </Center>
       {animeResults &&
         animeResults.map((item) => (
           <Flex alignItems="flex-start" my="4">
-            <Link href={item.url} flexShrink={0}>
+            <Link href={item.url} flexShrink={0} position="relative">
               <Image
                 src={item.images.jpg.image_url}
                 alt="Anime"
-                width="full"
+                width="225"
                 height="auto"
               />
             </Link>
+
             <Box ml="2" overflow="hidden">
+              <Heading as="h3" size="lg">
+                {item.title}
+              </Heading>
+              <br />
               {item.synopsis}
               <Box>
-            <Button
-              onClick={() => {
-                addToCompare(
-                  item.url,
-                  item.images.jpg.image_url,
-                  item.synopsis
-                );
-                setCompareModal(true);
-              }}
-            >
-              Add To Compare
-            </Button>
+                <Button
+                  onClick={() => {
+                    addToCompare(
+                      item.url,
+                      item.images.jpg.image_url,
+                      item.synopsis,
+                      item.title
+                    );
+                    setCompareModal(true);
+                  }}
+                >
+                  Compare
+                </Button>
+              </Box>
             </Box>
-            </Box> 
-            
           </Flex>
         ))}
+      <Center>
+        <Heading as="h2" size="xl"></Heading>
+        <p>
+          "{quote.quote}" -{quote.character}
+        </p>
+      </Center>
     </div>
   );
 }
