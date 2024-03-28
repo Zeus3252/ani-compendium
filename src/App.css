@@ -2,7 +2,6 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  
 }
 
 .logo {
@@ -41,16 +40,10 @@
   color: #888;
 }
 
-.synopsis {
-  
-}
-
 .item-container {
   display: flex;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;
   gap: 20px;
- 
-
 }
 
 .hidden {
