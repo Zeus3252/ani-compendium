@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import NavBar from './compontents/NavBar'
 import ItemDisplay from './compontents/ItemDisplay'
 import './App.css'
+import { Input } from '@chakra-ui/react'
 
 function App() {
   const [searchString, setSearchString] = useState("")
@@ -26,19 +27,9 @@ function App() {
   
   
   return (
-   
-      <div>
-        <NavBar
-        quote={quote}
-        />
-        <ItemDisplay 
-        animeResults={animeResults}
-        searchTime={searchTime}
-        searchString={searchString}
-        setSearchString={setSearchString}
-        />
-       
-      </div> 
+    
+      <Input/>
+      
   )
 }
 
