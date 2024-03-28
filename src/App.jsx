@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "./compontents/NavBar";
 import ItemDisplay from "./compontents/ItemDisplay";
 import Compare from "./compontents/Compare";
@@ -16,6 +16,12 @@ function App() {
       synopsis: "",
     },
   ]);
+
+  useEffect(() => {
+    if (compare.length === 0 ) {
+      setCompareModal(false)
+    }
+  }, [compare]);
 
   function searchTime() {
     const getData = async () => {
@@ -84,6 +90,7 @@ function App() {
         searchString={searchString}
         setSearchString={setSearchString}
         addToCompare={addToCompare}
+        setCompareModal={setCompareModal}
       />
     </div>
   );

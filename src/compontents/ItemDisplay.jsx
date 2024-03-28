@@ -5,6 +5,7 @@ function ItemDisplay({
   searchTime,
   setSearchString,
   addToCompare,
+  setCompareModal
 }) {
   return (
     <div>
@@ -37,6 +38,7 @@ function ItemDisplay({
                   item.images.jpg.image_url,
                   item.synopsis
                 );
+                setCompareModal(true);
               }}
             >
               Add To Compare
