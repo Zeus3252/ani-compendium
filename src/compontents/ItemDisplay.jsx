@@ -1,19 +1,22 @@
 import { useState } from "react";
+import { Button, Input, Image, Link, Flex, Box } from "@chakra-ui/react";
 
-
-
-function ItemDisplay ({ animeResults, searchTime, setSearchString }) {
+function ItemDisplay ({ animeResults, searchTime, setSearchString, addToCompare }) {
     return (
     <div>
-      <input type="text" placeholder="Search" onChange={(e) => setSearchString(e.target.value)} />
-      <button onClick={searchTime}>Search</button>
+      <Input type="text" placeholder="Search" onChange={(e) => setSearchString(e.target.value)}></Input>
+      <Button colorScheme='blue' onClick={searchTime}>Search</Button>
       {animeResults && animeResults.map((item) => (
-        <div className="item-container">
-        <a href={item.url}><img src={item.images.jpg.image_url} alt="Anime"/></a>
-        {item.synopsis}<br/><br/>
-        </div>
+        <Flex alignItems="flex-start" my="4">
+        <Link href={item.url} flexShrink={0}><Image src={item.images.jpg.image_url} alt="Anime" width="full" height="auto"/></Link>
+        <Box ml="2" overflow="hidden">
+            {item.synopsis}
+          </Box>
+          <Button onClick={() => {addToCompare(item.url, item.images.jpg.image_url, item.synopsis)}}>Add To Compare</Button>
+        </Flex>
+        
       ))}
-    </div> 
+    </div>
   );
 }
 

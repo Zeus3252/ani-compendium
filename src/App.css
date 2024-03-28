@@ -47,8 +47,12 @@
 
 .item-container {
   display: flex;
-  flex-wrap: nowrap; /* Allows items to wrap to the next line */
+  flex-wrap: nowrap; 
   gap: 20px;
-  width:100%;
+ 
 
+}
+
+.hidden {
+  display: none !important;
 }

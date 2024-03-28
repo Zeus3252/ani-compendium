@@ -1,14 +1,23 @@
 import { useState } from 'react'
 import NavBar from './compontents/NavBar'
 import ItemDisplay from './compontents/ItemDisplay'
+import Compare from './compontents/Compare'
 import './App.css'
-import { Input } from '@chakra-ui/react'
 
 function App() {
   const [searchString, setSearchString] = useState("")
   const [animeResults, setAnimeResults] = useState([])
   const [quote, setQuote] = useState("")
+  const [compareModal, setCompareModal] = useState(false)
+  const [compare, setCompare] = useState([
+    {
+      url: "",
+      image: "",
+      synopsis: "",
+    },
+  ]);
 
+ 
   function searchTime() {
     const getData = async () => {
       const response = await fetch(`https://api.jikan.moe/v4/anime?q=${searchString}`);
@@ -25,10 +34,40 @@ function App() {
     getData2();
   }
   
+function addToCompare (newUrl, newImage, newSynopsis) {
+  if(!compare.find((item => item.url === newUrl) || compare.length > 2)){
+    setCompare(prevState => [ ...prevState, { url: newUrl, image: newImage, synopsis: newSynopsis },]);
+    
+   }
+}
+
+const toggleCompareModal = () => {
+  setCompareModal(!compareModal);
+};
   
   return (
     
-      <Input/>
+      <div>
+        <Compare 
+        addToCompare={addToCompare}
+        compare={compare}
+        setCompare={setCompare}
+        compareModal={compareModal}
+        />
+        <NavBar
+        quote={quote}
+        setCompareModal={setCompareModal}
+        compareModal={compareModal}
+        toggleCompareModal={toggleCompareModal}
+        />
+        <ItemDisplay 
+        animeResults={animeResults}
+        searchTime={searchTime}
+        searchString={searchString}
+        setSearchString={setSearchString}
+        addToCompare={addToCompare}
+        />
+      </div> 
       
   )
 }

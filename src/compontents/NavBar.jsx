@@ -1,9 +1,11 @@
 import { useState } from "react";
-
-
-function NavBar ({ quote, navQuote  }) {
+import { Button } from "@chakra-ui/react";
+import Compare from "./Compare";
+function NavBar ({ quote, navQuote, toggleCompareModal }) {
+    
     return (
     <div>
+        <Button onClick={toggleCompareModal}>Compare</Button>
         <p>{quote}</p>
     </div>
     )
