@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button, Input, Image, Link, Flex, Box } from "@chakra-ui/react";
 
 function ItemDisplay({
@@ -30,7 +29,7 @@ function ItemDisplay({
             </Link>
             <Box ml="2" overflow="hidden">
               {item.synopsis}
-            </Box>
+              <Box>
             <Button
               onClick={() => {
                 addToCompare(
@@ -42,6 +41,9 @@ function ItemDisplay({
             >
               Add To Compare
             </Button>
+            </Box>
+            </Box> 
+            
           </Flex>
         ))}
     </div>

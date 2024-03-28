@@ -1,12 +1,13 @@
-import { Flex, Link, Box, Image, Heading, Center } from "@chakra-ui/react";
+import { Flex, Link, Box, Image, Heading, Center, Button } from "@chakra-ui/react";
 
-function Compare({ compare, compareModal }) {
+function Compare({ compare, compareModal, removeFromCompare }) {
   return (
     <Box>
       <Center>
-        <Heading>Comparison</Heading>
+        <Heading className={`${compareModal ? "" : "hidden"}`}>Comparison</Heading>
       </Center>
       <Flex className={`${compareModal ? "" : "hidden"}`} direction="row">
+      
         {compare &&
           compare.map((item) => (
             <Flex
@@ -20,11 +21,15 @@ function Compare({ compare, compareModal }) {
                 <Image src={item.image} width="full" height="auto" />
               </Link>
               <Box ml="2" overflow="hidden">
-                {item.synopsis}
+                {item.synopsis}<Box><Button onClick={() => removeFromCompare(item.url)}>Remove</Button></Box>
               </Box>
+              
             </Flex>
+            
           ))}
+          
       </Flex>
+      
     </Box>
   );
 }

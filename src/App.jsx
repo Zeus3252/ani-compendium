@@ -51,6 +51,14 @@ function App() {
     }
   }
 
+  function removeFromCompare (newUrl) {
+    for(let item of compare) {
+      if(item.url === newUrl) {
+        setCompare(prevState => prevState.filter(item => item.url != newUrl))
+      }
+    }
+  }
+
   const toggleCompareModal = () => {
     setCompareModal(!compareModal);
   };
@@ -62,6 +70,7 @@ function App() {
         compare={compare}
         setCompare={setCompare}
         compareModal={compareModal}
+        removeFromCompare={removeFromCompare}
       />
       <NavBar
         quote={quote}
