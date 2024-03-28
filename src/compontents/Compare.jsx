@@ -13,13 +13,17 @@ function Compare({
   compareModal,
   removeFromCompare,
   toggleCompareModal,
+  setCompare
 }) {
+  
   return (
+    
     <Box>
       <Center>
+        {compareModal != null ? 
         <Button onClick={toggleCompareModal}>
-          {compareModal ? "Hide Comparison" : "Show Comparison"}
-        </Button>
+          {compareModal ? "Show Comparison" : "Hide Comparison"}
+        </Button> : ""}
       </Center>
       <Flex className={`${compareModal ? "" : "hidden"}`} direction="row">
         {compare &&

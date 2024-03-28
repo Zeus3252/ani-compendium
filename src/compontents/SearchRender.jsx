@@ -6,7 +6,7 @@ function SearchRender() {
   const [searchString, setSearchString] = useState("");
   const [animeResults, setAnimeResults] = useState([]);
   const [quote, setQuote] = useState([]);
-  const [compareModal, setCompareModal] = useState(false);
+  const [compareModal, setCompareModal] = useState(null);
   const [compare, setCompare] = useState([
     {
       url: "",
@@ -15,7 +15,7 @@ function SearchRender() {
     },
   ]);
   function addToCompare(newUrl, newImage, newSynopsis, newTitle) {
-    if (compare.length === 1 && compare[0].url === "") {
+    if (compare.length === 1) {
       setCompare([
         {
           url: newUrl,
@@ -51,20 +51,25 @@ function SearchRender() {
   }
 
   const toggleCompareModal = () => {
-    if (compare[0].url != "") {
+    
       setCompareModal(!compareModal);
-    } else {
-    }
-  };
+    } 
+  
 
   function searchTime() {
+    
     if (searchString != "") {
+        setCompare((prevState) =>
+          prevState.filter((item) => item.url != "")
+        );
       const getData = async () => {
         const response = await fetch(
           `https://api.jikan.moe/v4/anime?q=${searchString}`
         );
         const result = await response.json();
         setAnimeResults(result.data);
+        setCompareModal(true)
+        
       };
       getData();
 
@@ -98,6 +103,7 @@ function SearchRender() {
         compareModal={compareModal}
         removeFromCompare={removeFromCompare}
         toggleCompareModal={toggleCompareModal}
+        setCompare={setCompare}
       />
 
       <ItemDisplay
@@ -107,6 +113,7 @@ function SearchRender() {
         addToCompare={addToCompare}
         setCompareModal={setCompareModal}
         quote={quote}
+       
       />
     </div>
   );
