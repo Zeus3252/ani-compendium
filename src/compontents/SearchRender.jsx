@@ -8,14 +8,17 @@ function SearchRender() {
   const [animeResults, setAnimeResults] = useState([]);
   const [quote, setQuote] = useState([]);
   const [compareModal, setCompareModal] = useState(false);
+  const [didSearch, setDidSearch] = useState(false);
   const [compare, setCompare] = useState([
     {
       url: "",
       image: "",
       synopsis: "",
+      aired: "",
     },
   ]);
-  function addToCompare(newUrl, newImage, newSynopsis, newTitle) {
+
+  function addToCompare(newUrl, newImage, newSynopsis, newTitle, newAired) {
     if (compare.length === 1 && compare[0].url === "") {
       setCompare([
         {
@@ -23,6 +26,7 @@ function SearchRender() {
           image: newImage,
           synopsis: newSynopsis,
           title: newTitle,
+          aired: newAired,
         },
       ]);
     } else if (
@@ -36,6 +40,7 @@ function SearchRender() {
           image: newImage,
           synopsis: newSynopsis,
           title: newTitle,
+          aired: newAired,
         },
       ]);
     }
@@ -61,8 +66,11 @@ function SearchRender() {
         const response = await fetch(
           `https://api.jikan.moe/v4/anime?q=${searchString}`
         );
+
         const result = await response.json();
+
         setAnimeResults(result.data);
+        setDidSearch(true);
       };
       getData();
 
@@ -72,6 +80,7 @@ function SearchRender() {
         setQuote(result);
       };
       getData2();
+      console.log(animeResults);
     }
   }
 
@@ -118,6 +127,7 @@ function SearchRender() {
         setCompareModal={setCompareModal}
         quote={quote}
         handleKeyPress={handleKeyPress}
+        didSearch={didSearch}
       />
     </div>
   );

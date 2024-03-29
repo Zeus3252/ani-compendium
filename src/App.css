@@ -50,6 +50,10 @@
   display: none !important;
 }
 
-.home {
-  height: auto;
+html {
+  background: linear-gradient(to right, #e0eafc, #cfdef3) !important;
+}
+
+.chakra-ui-light {
+  background: linear-gradient(to right, #e0eafc, #cfdef3);
 }

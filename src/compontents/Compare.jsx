@@ -41,7 +41,7 @@ function Compare({
               key={item.id}
               alignItems="flex-start"
               my="4"
-              direction="row"
+              direction={{ base: "column", md: "row" }}
               width="100%"
             >
               <Link href={item.url} flexShrink={0}>
@@ -53,6 +53,8 @@ function Compare({
                 </Heading>
                 <br />
                 {item.synopsis}
+                <br />
+                <i>{item.aired}</i>
                 <Box>
                   <Button onClick={() => removeFromCompare(item.url)}>
                     Remove

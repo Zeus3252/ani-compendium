@@ -7,6 +7,7 @@ import {
   Box,
   Heading,
   Center,
+  Text,
 } from "@chakra-ui/react";
 
 function ItemDisplay({
@@ -17,20 +18,24 @@ function ItemDisplay({
   setCompareModal,
   quote,
   handleKeyPress,
+  didSearch,
 }) {
   return (
-    <div>
-      <Input
-        type="text"
-        placeholder="Search"
-        onChange={(e) => setSearchString(e.target.value)}
-        onKeyDown={handleKeyPress}
-      ></Input>
-      <Center>
-        <Button colorScheme="blue" onClick={searchTime}>
+    <Box>
+      <Flex>
+        <Input
+          size="lg"
+          type="text"
+          placeholder="Search"
+          onChange={(e) => setSearchString(e.target.value)}
+          onKeyDown={handleKeyPress}
+          variant="filled"
+        ></Input>
+        <Button size="lg" colorScheme="blue" onClick={searchTime}>
           Search
         </Button>
-      </Center>
+      </Flex>
+
       {animeResults &&
         animeResults.map((item) => (
           <Flex alignItems="flex-start" my="4">
@@ -51,12 +56,15 @@ function ItemDisplay({
               {item.synopsis}
               <Box>
                 <Button
+                  colorScheme="green"
+                  size="xs"
                   onClick={() => {
                     addToCompare(
                       item.url,
                       item.images.jpg.image_url,
                       item.synopsis,
-                      item.title
+                      item.title,
+                      item.aired.string
                     );
                     setCompareModal(true);
                   }}
@@ -67,13 +75,24 @@ function ItemDisplay({
             </Box>
           </Flex>
         ))}
+
+      {didSearch && animeResults.length < 1 && (
+        <Center>
+          <Heading as="h5" size="sm" my="16">
+            No results found
+          </Heading>
+        </Center>
+      )}
+
       <Center>
         <Heading as="h2" size="xl"></Heading>
-        <p>
-          "{quote.quote}" -{quote.character}
-        </p>
+        {quote.length > 0 && (
+          <Text>
+            "{quote.quote}" -{quote.character}
+          </Text>
+        )}
       </Center>
-    </div>
+    </Box>
   );
 }
 
