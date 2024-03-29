@@ -16,6 +16,7 @@ function ItemDisplay({
   addToCompare,
   setCompareModal,
   quote,
+  handleKeyPress,
 }) {
   return (
     <div>
@@ -23,6 +24,7 @@ function ItemDisplay({
         type="text"
         placeholder="Search"
         onChange={(e) => setSearchString(e.target.value)}
+        onKeyDown={handleKeyPress}
       ></Input>
       <Center>
         <Button colorScheme="blue" onClick={searchTime}>

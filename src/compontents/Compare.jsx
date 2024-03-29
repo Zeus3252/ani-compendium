@@ -7,23 +7,32 @@ import {
   Center,
   Button,
 } from "@chakra-ui/react";
+import { useEffect } from "react";
 
 function Compare({
   compare,
   compareModal,
   removeFromCompare,
   toggleCompareModal,
-  setCompare
+  setCompare,
 }) {
-  
+  console.log(compare.length);
+
+  useEffect(() => {
+    setCompare((prevState) => prevState.slice(1));
+  }, []);
+
   return (
-    
     <Box>
       <Center>
-        {compareModal != null ? 
         <Button onClick={toggleCompareModal}>
-          {compareModal ? "Show Comparison" : "Hide Comparison"}
-        </Button> : ""}
+          {compareModal ? "Hide Comparison" : "Show Comparison"}
+        </Button>
+      </Center>
+      <Center>
+        <Heading as="h5" size="sm" m={8}>
+          {compareModal && compare.length === 0 ? "No selection" : ""}
+        </Heading>
       </Center>
       <Flex className={`${compareModal ? "" : "hidden"}`} direction="row">
         {compare &&

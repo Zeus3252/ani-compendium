@@ -1,4 +1,3 @@
-
 import SearchRender from "./compontents/SearchRender";
 import "./App.css";
 

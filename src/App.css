@@ -50,6 +50,6 @@
   display: none !important;
 }
 
-body {
-  background-color: white;
+.home {
+  height: auto;
 }

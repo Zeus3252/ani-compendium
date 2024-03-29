@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import ItemDisplay from "./ItemDisplay";
 import Compare from "./Compare";
+import Home from "./Home";
 
 function SearchRender() {
   const [searchString, setSearchString] = useState("");
   const [animeResults, setAnimeResults] = useState([]);
   const [quote, setQuote] = useState([]);
-  const [compareModal, setCompareModal] = useState(null);
+  const [compareModal, setCompareModal] = useState(false);
   const [compare, setCompare] = useState([
     {
       url: "",
@@ -15,7 +16,7 @@ function SearchRender() {
     },
   ]);
   function addToCompare(newUrl, newImage, newSynopsis, newTitle) {
-    if (compare.length === 1) {
+    if (compare.length === 1 && compare[0].url === "") {
       setCompare([
         {
           url: newUrl,
@@ -51,25 +52,17 @@ function SearchRender() {
   }
 
   const toggleCompareModal = () => {
-    
-      setCompareModal(!compareModal);
-    } 
-  
+    setCompareModal(!compareModal);
+  };
 
   function searchTime() {
-    
     if (searchString != "") {
-        setCompare((prevState) =>
-          prevState.filter((item) => item.url != "")
-        );
       const getData = async () => {
         const response = await fetch(
           `https://api.jikan.moe/v4/anime?q=${searchString}`
         );
         const result = await response.json();
         setAnimeResults(result.data);
-        setCompareModal(true)
-        
       };
       getData();
 
@@ -96,15 +89,26 @@ function SearchRender() {
     };
     getData2();
   }, []);
+
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      searchTime();
+    }
+  };
+
   return (
     <div>
-      <Compare
-        compare={compare}
-        compareModal={compareModal}
-        removeFromCompare={removeFromCompare}
-        toggleCompareModal={toggleCompareModal}
-        setCompare={setCompare}
-      />
+      {animeResults.length < 1 ? (
+        <Home />
+      ) : (
+        <Compare
+          compare={compare}
+          compareModal={compareModal}
+          removeFromCompare={removeFromCompare}
+          toggleCompareModal={toggleCompareModal}
+          setCompare={setCompare}
+        />
+      )}
 
       <ItemDisplay
         animeResults={animeResults}
@@ -113,7 +117,7 @@ function SearchRender() {
         addToCompare={addToCompare}
         setCompareModal={setCompareModal}
         quote={quote}
-       
+        handleKeyPress={handleKeyPress}
       />
     </div>
   );
