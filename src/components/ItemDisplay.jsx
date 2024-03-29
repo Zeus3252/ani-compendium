@@ -18,7 +18,7 @@ function ItemDisplay({
   setCompareModal,
   quote,
   handleKeyPress,
-  didSearch,
+  didSearch, 
 }) {
   return (
     <Box>
@@ -75,7 +75,7 @@ function ItemDisplay({
             </Box>
           </Flex>
         ))}
-
+  
       {didSearch && animeResults.length < 1 && (
         <Center>
           <Heading as="h5" size="sm" my="16">
@@ -86,11 +86,11 @@ function ItemDisplay({
 
       <Center>
         <Heading as="h2" size="xl"></Heading>
-        {quote.length > 0 && (
+        {quote.quote.length > 0 && 
           <Text>
             "{quote.quote}" -{quote.character}
           </Text>
-        )}
+        }
       </Center>
     </Box>
   );

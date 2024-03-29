@@ -1,4 +1,4 @@
-import SearchRender from "./compontents/SearchRender";
+import SearchRender from "./components/SearchRender";
 import "./App.css";
 
 function App() {
