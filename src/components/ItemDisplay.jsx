@@ -18,7 +18,7 @@ function ItemDisplay({
   setCompareModal,
   quote,
   handleKeyPress,
-  didSearch, 
+  didSearch,
 }) {
   return (
     <Box>
@@ -38,7 +38,11 @@ function ItemDisplay({
 
       {animeResults &&
         animeResults.map((item) => (
-          <Flex alignItems="flex-start" my="4" direction={{ base: "column", md: "row" }}>
+          <Flex
+            alignItems="flex-start"
+            my="4"
+            direction={{ base: "column", md: "row" }}
+          >
             <Link href={item.url} flexShrink={0} position="relative">
               <Image
                 src={item.images.jpg.image_url}
@@ -75,7 +79,7 @@ function ItemDisplay({
             </Box>
           </Flex>
         ))}
-  
+
       {didSearch && animeResults.length < 1 && (
         <Center>
           <Heading as="h5" size="sm" my="16">
@@ -86,11 +90,11 @@ function ItemDisplay({
 
       <Center>
         <Heading as="h2" size="xl"></Heading>
-        {quote.quote.length > 0 && 
+        {quote && quote.quote && quote.quote.length > 0 && (
           <Text>
-            "{quote.quote}" -{quote.character}
+            <br />"{quote.quote}" - {quote.character}
           </Text>
-        }
+        )}
       </Center>
     </Box>
   );
