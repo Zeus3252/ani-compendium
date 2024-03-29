@@ -38,7 +38,7 @@ function ItemDisplay({
 
       {animeResults &&
         animeResults.map((item) => (
-          <Flex alignItems="flex-start" my="4">
+          <Flex alignItems="flex-start" my="4" direction={{ base: "column", md: "row" }}>
             <Link href={item.url} flexShrink={0} position="relative">
               <Image
                 src={item.images.jpg.image_url}
