@@ -90,7 +90,7 @@ function ItemDisplay({
 
       <Center>
         <Heading as="h2" size="xl"></Heading>
-        {quote && quote.quote.length > 0 && (
+        {quote && quote.quote && quote.quote.length > 0 && (
           <Text>
             <br />"{quote.quote}" - {quote.character}
           </Text>
