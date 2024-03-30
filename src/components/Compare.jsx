@@ -8,6 +8,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
+import { useToast } from "@chakra-ui/react";
 
 function Compare({
   compare,
@@ -16,7 +17,7 @@ function Compare({
   toggleCompareModal,
   setCompare,
 }) {
-  console.log(compare.length);
+  const toast = useToast();
 
   useEffect(() => {
     setCompare((prevState) => prevState.slice(1));
@@ -44,19 +45,37 @@ function Compare({
               direction={{ base: "column", md: "row" }}
               width="100%"
             >
-              <Link href={item.url} flexShrink={0}>
+              <Link
+                href={item.url}
+                flexShrink={0}
+                style={{ paddingRight: "16px" }}
+              >
                 <Image src={item.image} width="full" height="auto" />
               </Link>
               <Box ml="2" overflow="hidden">
                 <Heading as="h3" size="lg">
                   {item.title}
                 </Heading>
+
+                <i>{item.aired}</i>
+                <br />
                 <br />
                 {item.synopsis}
-                <br />
-                <i>{item.aired}</i>
+
                 <Box>
-                  <Button onClick={() => removeFromCompare(item.url)}>
+                  <Button
+                    onClick={() => {
+                      removeFromCompare(item.url);
+                      toast({
+                        title: "Item removed.",
+                        description:
+                          "This item has been removed from your comparison list.",
+                        status: "warning",
+                        duration: 3000,
+                        isClosable: true,
+                      });
+                    }}
+                  >
                     Remove
                   </Button>
                 </Box>

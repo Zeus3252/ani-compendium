@@ -10,6 +10,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import { useToast } from "@chakra-ui/react";
+
 function ItemDisplay({
   animeResults,
   searchTime,
@@ -20,6 +22,7 @@ function ItemDisplay({
   handleKeyPress,
   didSearch,
 }) {
+  const toast = useToast();
   return (
     <Box>
       <Flex>
@@ -41,9 +44,24 @@ function ItemDisplay({
           <Flex
             alignItems="flex-start"
             my="4"
+            p="4"
             direction={{ base: "column", md: "row" }}
+            borderWidth="1px"
+            borderColor="gray.200"
+            borderRadius="lg"
+            boxShadow="sm"
+            _hover={{
+              boxShadow: "md",
+              borderColor: "gray.300",
+            }}
+            transition="all 0.2s ease-in-out"
           >
-            <Link href={item.url} flexShrink={0} position="relative">
+            <Link
+              href={item.url}
+              flexShrink={0}
+              position="relative"
+              style={{ paddingRight: "16px" }}
+            >
               <Image
                 src={item.images.jpg.image_url}
                 alt="Anime"
@@ -71,6 +89,14 @@ function ItemDisplay({
                       item.aired.string
                     );
                     setCompareModal(true);
+                    toast({
+                      title: "Item added.",
+                      description:
+                        "This item has been added to your comparison list.",
+                      status: "success",
+                      duration: 3000,
+                      isClosable: true,
+                    });
                   }}
                 >
                   Compare
