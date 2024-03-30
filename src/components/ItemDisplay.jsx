@@ -33,6 +33,11 @@ function ItemDisplay({
           onChange={(e) => setSearchString(e.target.value)}
           onKeyDown={handleKeyPress}
           variant="filled"
+          bg="white"
+          _focus={{
+            bg: "white", 
+            borderColor: "blue.500", 
+          }}
         ></Input>
         <Button size="lg" colorScheme="blue" onClick={searchTime}>
           Search
