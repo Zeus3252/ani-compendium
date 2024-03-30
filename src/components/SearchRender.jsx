@@ -28,6 +28,7 @@ function SearchRender() {
           synopsis: newSynopsis,
           title: newTitle,
           aired: newAired,
+          popularity: newPopularity
         },
       ]);
     } else if (
