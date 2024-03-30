@@ -6,6 +6,7 @@ import {
   Heading,
   Center,
   Button,
+  Text,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { useToast } from "@chakra-ui/react";
@@ -23,6 +24,22 @@ function Compare({
     setCompare((prevState) => prevState.slice(1));
   }, []);
 
+  function popularityCalc() {
+    if (compare[0].popularity < compare[1].popularity) {
+      return compare[0].title;
+    } else {
+      return compare[1].title;
+    }
+  }
+  {
+    compare[1] && console.log(compare[1].popularity);
+  }
+  {
+    compare[1] && console.log(compare[1].popularity);
+  }
+  {
+    compare[1] && console.log(compare[1].popularity);
+  }
   return (
     <Box>
       <Center>
@@ -61,6 +78,9 @@ function Compare({
                 <br />
                 <br />
                 {item.synopsis}
+                <Text fontSize="md" fontWeight="bold" color="teal.500" mt={2}>
+                  Popularity: #{item.popularity}
+                </Text>
 
                 <Box>
                   <Button
@@ -83,6 +103,13 @@ function Compare({
             </Flex>
           ))}
       </Flex>
+      {compare[0] && compare[1] && (
+        <Center>
+        <Text fontSize="lg" fontWeight="semibold" color="green.600" my={4}>
+          {popularityCalc()} is more popular.
+        </Text>
+      </Center>
+      )}
     </Box>
   );
 }

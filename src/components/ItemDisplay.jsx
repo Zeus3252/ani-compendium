@@ -91,7 +91,8 @@ function ItemDisplay({
                       item.images.jpg.image_url,
                       item.synopsis,
                       item.title,
-                      item.aired.string
+                      item.aired.string,
+                      item.popularity
                     );
                     setCompareModal(true);
                     toast({

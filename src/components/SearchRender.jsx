@@ -15,10 +15,11 @@ function SearchRender() {
       image: "",
       synopsis: "",
       aired: "",
+      popularity: "",
     },
   ]);
 
-  function addToCompare(newUrl, newImage, newSynopsis, newTitle, newAired) {
+  function addToCompare(newUrl, newImage, newSynopsis, newTitle, newAired, newPopularity) {
     if (compare.length === 1 && compare[0].url === "") {
       setCompare([
         {
@@ -41,6 +42,7 @@ function SearchRender() {
           synopsis: newSynopsis,
           title: newTitle,
           aired: newAired,
+          popularity: newPopularity
         },
       ]);
     }
