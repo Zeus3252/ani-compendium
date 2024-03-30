@@ -105,10 +105,10 @@ function Compare({
       </Flex>
       {compare[0] && compare[1] && (
         <Center>
-        <Text fontSize="lg" fontWeight="semibold" color="green.600" my={4}>
-          {popularityCalc()} is more popular.
-        </Text>
-      </Center>
+          <Text fontSize="lg" fontWeight="semibold" color="green.600" my={4}>
+            {popularityCalc()} is more popular.
+          </Text>
+        </Center>
       )}
     </Box>
   );
