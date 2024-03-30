@@ -82,7 +82,6 @@ function SearchRender() {
         setQuote(result);
       };
       getData2();
-      console.log(animeResults);
     }
   }
 

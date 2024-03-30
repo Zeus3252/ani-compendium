@@ -31,15 +31,7 @@ function Compare({
       return compare[1].title;
     }
   }
-  {
-    compare[1] && console.log(compare[1].popularity);
-  }
-  {
-    compare[1] && console.log(compare[1].popularity);
-  }
-  {
-    compare[1] && console.log(compare[1].popularity);
-  }
+ 
   return (
     <Box>
       <Center>

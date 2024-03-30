@@ -10,7 +10,7 @@ function Home() {
       </Center>
       <Box>
         <Center>
-          <Text fontSize="lg" mb="8">
+          <Text fontSize="xl" fontWeight="medium" mb={6} color="gray.600">
             Tool for searching and comparing media
           </Text>
         </Center>
