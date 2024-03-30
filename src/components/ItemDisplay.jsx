@@ -113,15 +113,16 @@ function ItemDisplay({
           </Heading>
         </Center>
       )}
-
-      <Center>
-        <Heading as="h2" size="xl"></Heading>
-        {quote && quote.quote && quote.quote.length > 0 && (
-          <Text>
-            <br />"{quote.quote}" - {quote.character}
-          </Text>
-        )}
-      </Center>
+      <Box>
+        <Center>
+          <Heading as="h2" size="xl"></Heading>
+          {quote && quote.quote && quote.quote.length > 0 && (
+            <Text>
+              <br />"{quote.quote}" - {quote.character}
+            </Text>
+          )}
+        </Center>
+      </Box>
     </Box>
   );
 }
